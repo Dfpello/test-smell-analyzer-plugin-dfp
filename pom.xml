@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.Dfpello</groupId>
   <artifactId>test-smell-analyzer-plugin-dfp</artifactId>
-  <version>v1.0.3</version>
+  <version>v1.0.4</version>
   <packaging>maven-plugin</packaging>
 
   <name>Test Smell Analyzer Maven Plugin</name>
@@ -68,4 +68,5 @@
     </plugins>
   </build>
 </project>
+
 
