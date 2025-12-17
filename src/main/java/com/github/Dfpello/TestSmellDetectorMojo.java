@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Mojo(name = "list-smells", defaultPhase = LifecyclePhase.TEST, threadSafe = true)
-
 public class TestSmellDetectorMojo extends AbstractMojo {
 
     @Parameter(defaultValue = "${project.basedir}", readonly = true)
@@ -68,7 +68,6 @@ public class TestSmellDetectorMojo extends AbstractMojo {
         }
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(inputCsv))) {
-            
             for (Path testPath : testFiles) {
                 String testAbsPath = testPath.toAbsolutePath().toString().replace(File.separator, "/");
                 String prodAbsPath;
@@ -100,10 +99,9 @@ public class TestSmellDetectorMojo extends AbstractMojo {
     }
     
     private File runTsDetect(File inputPathsCsv) throws IOException, InterruptedException, MojoExecutionException {
-
         File tsDetectJar = locateTsDetectJar(); 
         
-        List<String> command = List.of("java", "-jar", tsDetectJar.getAbsolutePath(), inputPathsCsv.getAbsolutePath(), targetDir.getAbsolutePath());
+        List<String> command = Arrays.asList("java", "-jar", tsDetectJar.getAbsolutePath(), inputPathsCsv.getAbsolutePath(), targetDir.getAbsolutePath());
 
         getLog().info("Ejecutando tsDetect...");
         
